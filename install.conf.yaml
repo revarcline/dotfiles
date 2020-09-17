@@ -6,6 +6,12 @@
         path: ssh/config
         create: true
     ~/.tmux.conf: tmux.conf
+    ~/.config/bpytop/themes/gruvbox_dark_lighter.theme:
+        path: config/bpytop/themes/gruvbox_dark_lighter.theme
+        create: true
+    ~/.config/cava/config:
+        path: config/cava/config
+        create: true
     ~/.config/kitty/kitty.conf:
         path: config/kitty/kitty.conf
         create: true
@@ -14,6 +20,9 @@
         create: true
     ~/.nvimrc: config/nvim/init.vim
     ~/.p10k.zsh: p10k.zsh
+    ~/.config/zathura/zathurarc:
+        path: config/zathura/zathurarc
+        create: true
     ~/.zlogin: zsh/zlogin
     ~/.zlogout: zsh/zlogout
     ~/.zpreztorc: zsh/zpreztorc
@@ -23,4 +32,5 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - []
+  - [git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto]
+  - [git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm]

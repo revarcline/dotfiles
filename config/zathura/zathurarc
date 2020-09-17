@@ -1,0 +1,40 @@
+set selection-clipboard clipboard
+
+{{{ Colours
+
+# gruvbox
+
+set default-bg                  "#282828"
+set default-fg                  "#ebdbb2"
+
+set statusbar-fg                "#ebdbb2"
+set statusbar-bg                "#3c3836"
+
+set inputbar-bg                 "#282828"
+set inputbar-fg                 "#ebdbb2"
+
+set notification-bg             "#458588"
+set notification-fg             "#ebdbb2"
+
+set notification-error-bg       "#458588"
+set notification-error-fg       "#cc241d"
+
+set notification-warning-bg     "#458588"
+set notification-warning-fg     "#cc241d"
+
+set highlight-color             "#fabd2f"
+set highlight-active-color      "#83a598"
+
+set completion-bg               "#504945"
+set completion-fg               "#ebdbb2"
+
+set completion-highlight-fg     "#504945"
+set completion-highlight-bg     "#83a598"
+
+
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#ebdbb2"
+
+set recolor                     "false"
+set recolor-keephue             "false"
+#}}}
