@@ -1,0 +1,8 @@
+host adam
+    User axcline
+    HostName 23.92.17.59
+
+host boppus
+    User arcline
+    Hostname 192.168.1.111
+    Port 42069
