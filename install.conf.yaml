@@ -1,7 +1,6 @@
 - clean: ['~']
 
 - link:
-    ~/.profile: profile
     ~/.ssh/config:
         path: ssh/config
         create: true
@@ -20,7 +19,7 @@
         create: true
     ~/.nvimrc: config/nvim/init.vim
     ~/.p10k.zsh: p10k.zsh
-    ~/.config/zathura/zathurarc:
+    ~/.config/zathura/zathurac:
         path: config/zathura/zathurarc
         create: true
     ~/.zlogin: zsh/zlogin
