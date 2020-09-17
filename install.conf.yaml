@@ -13,6 +13,14 @@
         path: config/nvim/init.vim
         create: true
     ~/.nvimrc: config/nvim/init.vim
+    ~/.p10k.zsh: p10k.zsh
+    ~/.zlogin: zsh/zlogin
+    ~/.zlogout: zsh/zlogout
+    ~/.zpreztorc: zsh/zpreztorc
+    ~/.zprofile: zsh/zprofile
+    ~/.zshenv: zsh/zshenv
+    ~/.zshrc: zsh/zshrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - []

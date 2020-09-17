@@ -1,0 +1,284 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# include local path stuff
+if [ -d "$HOME/.bin" ] ;
+	then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+	then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.gem/ruby/2.7.0/bin" ];
+    then PATH="$HOME/.gem/ruby/*/bin:$PATH"
+fi
+
+if [ -d "$HOME/.rbenv/bin" ];
+    then PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
+eval "$(fasd --init auto)"
+
+eval "$(rbenv init -)"
+
+rr() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
+}
+
+# Customize to your needs...
+# setup baby
+autoload -Uz promptinit
+promptinit
+prompt powerlevel10k
+
+# editor settings
+export EDITOR='nvim'
+export VISUAL='nvim'
+alias vim="nvim"
+alias vi="nvim"
+
+# nnn opts
+export NNN_USE_EDITOR=1      # use the $EDITOR when opening text files
+export NNN_COLORS='2134'
+
+
+# nnn cd on quit
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+# ew emacs keys
+alias info='info --vi-keys'
+
+#easy playerctl
+alias pp='playerctl play-pause &'
+
+# ls stuff
+alias ls='ls --color=auto'
+alias la='ls -a'
+alias ll='ls -lah'
+alias l='ls'
+alias l.="ls -A | egrep '^\.'"
+
+# a games
+alias ttysol='ttysolitaire -p 1000'
+
+# surfshark vpn aliases
+alias ssv="sudo surfshark-vpn"
+alias ssvs="sudo surfshark-vpn status"
+alias ssva="sudo surfshark-vpn attack"
+alias ssvd="sudo surfshark-vpn down"
+
+# shortcut to restart pulse (crackling speakers)
+alias rp='pulseaudio -k && pulseaudio --start && echo "pulse audio restarted"'
+
+# extra fasd hooks
+alias v='f -e nvim' # quick opening files with vim
+alias m='f -e mplayer' # quick opening files with mplayer
+alias o='a -e xdg-open' # quick opening files with xdg-open 
+
+# use fzf to search packages
+alias pacfzf="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias yayfzf="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
+
+# test to see if in python venv
+whichvenv ()
+{
+    if env | grep VIRTUAL_ENV= > /dev/null ; then
+        echo $VIRTUAL_ENV
+    else
+        echo "No virtual environment."
+    fi
+}
+
+# shortcut to init standard python venv
+alias initvenv='source venv/bin/activate'
+
+#fix obvious typos
+alias cd..='cd ..'
+alias pdw="pwd"
+alias udpate='sudo pacman -Syyu'
+alias upate='sudo pacman -Syyu'
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# Weather stuff
+alias wf='curl wttr.in/"New Orleans"\?nqF'
+alias cw='curl wttr.in/"New Orleans"\?0qF'
+
+# todo.txt
+alias todo=todo.sh
+
+# empty sudo (handy for pacfzf)
+alias sudome='sudo true'
+
+#readable output
+alias df='df -h'
+
+#pacman unlock
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+
+#use all cores
+alias uac="sh ~/.bin/main/000*"
+
+#continue download
+alias wget="wget -c"
+
+#userlist
+alias userlist="cut -d: -f1 /etc/passwd"
+
+# Aliases for software managment
+# pacman or pm
+alias pacman='sudo pacman --color auto'
+alias update='sudo pacman -Syyu'
+
+# yay as aur helper - updates everything
+alias pksyua="yay -Syu --noconfirm"
+alias upall="yay -Syu --noconfirm"
+
+# yay find with fzf
+alias yayfzf="yay -Slq | fzf -m --preview 'yay -Si {1}'| xargs -ro yay -S"
+
+# Recent Installed Packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -100"
+
+# Cleanup orphaned packages
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+# rails/bundle stuff
+alias beg="bundle exec guard"
+
+# ps
+alias psa="ps aux"
+alias psgrep="ps -eF | grep -v grep | grep -i -e VSZ -e"
+
+# overmind for local Procfile.dev
+alias omdev='overmind s -f Procfile.dev -p 3000'
+
+# grub update
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+# read markdown file with pandoc and w3m
+rmd () {
+    pandoc $1 | w3m -T text/html
+}
+
+#hardware info --short
+alias hw="hwinfo --short"
+
+# check vulnerabilities microcode
+alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+
+# lofi in vlc
+alias lofi-study="streamlink 'https://www.youtube.com/watch?v=5qap5aO4i9A' best &"
+alias lofi-sleep="streamlink 'https://www.youtube.com/watch?v=DWcJFNfaw9c' best &"
+alias lofi-steez="streamlink 'https://www.youtube.com/watch?v=US6iyJKGNLI' best &"
+
+#get fastest mirrors in your neighborhood
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+
+#Recent Installed Packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -100"
+
+#Cleanup orphaned packages
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+# web shortcuts
+alias wiki="surfraw wikipedia"
+alias ddg="surfraw duckduckgo"
+alias goog="surfraw google"
+
+# edit, source this document
+alias szrc="source ~/.zshrc"
+alias ezrc="nvim ~/.zshrc"
+
+# generate ctags from root dir of ruby on rails project and return
+rortags () {
+  RORROOT=$(pwd)
+  ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)
+  echo 'generated ctags file at ./tags'
+  cd $RORROOT
+}
+
+# ex = EXtractor for all kinds of archives
+# usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+	  *.deb)       ar x $1      ;;
+	  *.tar.xz)    tar xf $1   ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# creates blank or edits existing diary entry
+alias diary='/home/arcline/diary/diary.sh'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
