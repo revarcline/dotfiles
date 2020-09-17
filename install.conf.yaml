@@ -12,6 +12,7 @@
     ~/.config/nvim/init.vim:
         path: config/nvim/init.vim
         create: true
+    ~/.nvimrc: config/nvim/init.vim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
