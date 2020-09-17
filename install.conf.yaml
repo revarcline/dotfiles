@@ -6,11 +6,12 @@
         path: ssh/config
         create: true
     ~/.tmux.conf: tmux.conf
-    ~/.config/nvim:
-        path: config/nvim
+    ~/.config/kitty/kitty.conf:
+        path: config/kitty/kitty.conf
         create: true
-    ~/.config/kitty:
-        path: config/kitty
+    ~/.config/nvim/init.vim:
+        path: config/nvim/init.vim
         create: true
 
-
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
