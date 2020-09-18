@@ -187,6 +187,7 @@ set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
 set incsearch	" Searches for strings incrementally
 set scl=yes     " Sign column always on
+set cole=0      " disable concealment in syntax highlighting
 
 set autoindent	" Auto-indent new lines
 set smartindent	" Enable smart-indent
