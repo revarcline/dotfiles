@@ -280,8 +280,24 @@ ex ()
 # creates blank or edits existing diary entry
 alias diary='/home/arcline/diary/diary.sh'
 
-# update dotfiles from git (requires logged in git account and zprezto)
-alias updots='cd ~/.dotfiles && gpp && cd -'
+# commit dotfile changes to local repo
+# will throw error without message
+commdots()
+{
+cd ~/.dotfiles
+git add -A *
+git commit -m $1
+cd -
+}
+
+# sync dotfiles with remote
+updots()
+{
+cd ~/.dotfiles
+git pull --no-rebase
+git push
+cd -
+}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

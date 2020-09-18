@@ -187,7 +187,6 @@ set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
 set incsearch	" Searches for strings incrementally
 set scl=yes     " Sign column always on
-set cole=0      " disable concealment in syntax highlighting
 
 set autoindent	" Auto-indent new lines
 set smartindent	" Enable smart-indent
@@ -230,6 +229,10 @@ set mouse=a
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
  
+" disable annoying conceals
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
  
 "------------------------------------------------------------
 " Indentation options {{{1
