@@ -12,6 +12,9 @@
     ~/.config/bpytop/themes/gruvbox_dark_lighter.theme:
         path: config/bpytop/themes/gruvbox_dark_lighter.theme
         create: true
+    ~/.config/bpytop/bpytop.conf:
+        path: config/bpytop/bpytop.conf
+        create: true
     ~/.config/cava/config:
         path: config/cava/config
         create: true
