@@ -40,3 +40,4 @@
   - [ git submodule update --init --recursive, Installing submodules ]
   - [ ./install_scripts/tpm.sh ]
   - [ ./install_scripts/prezto.sh ]
+  - [ tic -x -o ~/.terminfo kittyinfo ]
