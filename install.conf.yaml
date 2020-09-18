@@ -1,4 +1,4 @@
-- clean: ['~']
+- clea: ['~']
 
 - link:
     ~/.ssh/config:
