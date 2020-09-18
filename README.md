@@ -8,3 +8,5 @@ and [zprezto](https://github.com/sorin-ionescu/prezto)
 
 recommended font for kitty is 
 [jetbrains mono nerdfont](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono)
+
+after install, sync with `updots`
