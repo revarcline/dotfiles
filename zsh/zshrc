@@ -287,7 +287,7 @@ commdots()
 cd ~/.dotfiles
 git add -A *
 git commit -m $1
-cd -
+cd $OLDPWD
 }
 
 # sync dotfiles with remote
@@ -296,7 +296,7 @@ updots()
 cd ~/.dotfiles
 git pull --no-rebase
 git push
-cd -
+cd $OLDPWD
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
