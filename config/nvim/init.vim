@@ -62,9 +62,6 @@ Plug 'mattn/emmet-vim'
 " Rust language!
 Plug 'rust-lang/rust.vim'
 
-" easy alignment
-Plug 'godlygeek/tabular'
-
 " show indent lines
 Plug 'Yggdroot/indentLine'
 
@@ -120,6 +117,9 @@ Plug 'chrisbra/Colorizer'
 " closer for quotes and shit
 Plug 'jiangmiao/auto-pairs'
 
+" better alignment for delimiters and such
+Plug 'junegunn/vim-easy-align'
+
 " Deoplete and plugins 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
@@ -169,7 +169,7 @@ set termguicolors
   let &t_ZH = "\<Esc>[3m"
   let &t_ZR = "\<Esc>[23m"
 
-"Set leader - PLS NOTE!
+"Set leader
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
@@ -318,8 +318,12 @@ nmap <C-b> :Buffer<CR>
 xmap <C-b> :Buffer<CR>
 nmap <Leader>; :Commands<CR>
 xmap <Leader>; :Commands<CR>
-inoremap <C-p> <esc>:Files<CR>
-nnoremap <C-p> :Files<CR>
+nmap <C-p> <esc>:Files<CR>
+xmap <C-p> :Files<CR>
+nmap <Leader>rg :Rg<CR>
+xmap <Leader>rg :Rg<CR>
+
+
 
 " FZF with preview for files
 command! -bang -nargs=? -complete=dir Files
@@ -352,6 +356,12 @@ autocmd! User GoyoLeave Limelight!
 
 " More goyo and limelight settings
 let g:limelight_conceal_ctermfg = 240
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Default: 0.5
 let g:limelight_default_coefficient = 0.7
