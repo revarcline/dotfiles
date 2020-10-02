@@ -322,12 +322,14 @@ nmap <C-p> <esc>:Files<CR>
 xmap <C-p> :Files<CR>
 nmap <Leader>rg :Rg<CR>
 xmap <Leader>rg :Rg<CR>
-
-
+nmap <Leader>ag :Ag<CR>
+xmap <Leader>ag :Ag<CR>
 
 " FZF with preview for files
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+    \ call fzf#vim#files(<q-args>,
+    \ fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}),
+    \ <bang>0)
 
 " Hide cmd buffer for fzf
 autocmd! FileType fzf
