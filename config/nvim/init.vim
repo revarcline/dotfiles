@@ -276,10 +276,10 @@ noremap <expr> <F5> deoplete#toggle()
 noremap! <expr> <F5> deoplete#toggle()
 
 " easy map for line nav
-nmap <Leader>hh ^
-xmap <Leader>hh ^
-nmap <Leader>ll $
-xmap <Leader>ll $
+nmap H ^
+xmap H ^
+nmap L $
+xmap L $
 
 " Save mappings
 inoremap <C-s> <esc>:w<cr>                 " save files
@@ -314,16 +314,16 @@ let g:user_emmet_leader_key='<C-z>'
 let g:user_emmet_install_global = 1
 
 " FZF mappings
-nmap <C-b> :Buffer<CR>
-xmap <C-b> :Buffer<CR>
-nmap <Leader>; :Commands<CR>
-xmap <Leader>; :Commands<CR>
-nmap <C-p> <esc>:Files<CR>
-xmap <C-p> :Files<CR>
-nmap <Leader>rg :Rg<CR>
-xmap <Leader>rg :Rg<CR>
-nmap <Leader>ag :Ag<CR>
-xmap <Leader>ag :Ag<CR>
+nnoremap <C-b> :Buffer<CR>
+xnoremap <C-b> :Buffer<CR>
+nnoremap <Leader>; :Commands<CR>
+xnoremap <Leader>; :Commands<CR>
+nnoremap <C-p> <esc>:Files<CR>
+xnoremap <C-p> :Files<CR>
+nnoremap <Leader>rg :Rg<CR>
+xnoremap <Leader>rg :Rg<CR>
+nnoremap <Leader>ag :Ag<CR>
+xnoremap <Leader>ag :Ag<CR>
 
 " FZF with preview for files
 command! -bang -nargs=? -complete=dir Files
@@ -408,7 +408,7 @@ let g:autotagTagsFile="tags"
 " slime setup - change this depending on how you find youself using it!
 " currently I have it so whatever pane 2 of my tmux window is runs the repl
 let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
+let g:slime_default_config = {"socket_name": "default", "target_pane": "last"}
 
 " gruvbox baby
 let g:gruvbox_italic=1
