@@ -258,6 +258,9 @@ map Y y$
 nmap <Leader>v "+
 vmap <Leader>v "+
 
+"Instead of stumbling into ex mode, repeat the last macro used.
+nnoremap Q @@
+
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
