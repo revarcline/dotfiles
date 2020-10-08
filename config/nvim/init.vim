@@ -411,7 +411,7 @@ let g:autotagTagsFile="tags"
 " slime setup - change this depending on how you find youself using it!
 " currently I have it so whatever pane 2 of my tmux window is runs the repl
 let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "last"}
+let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
 
 " gruvbox baby
 let g:gruvbox_italic=1
