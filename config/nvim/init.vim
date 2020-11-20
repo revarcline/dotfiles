@@ -135,6 +135,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 " FZF baybee
 Plug '/usr/bin/fzf'  " make sure you install this
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Improved python folding

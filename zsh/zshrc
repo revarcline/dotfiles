@@ -112,6 +112,9 @@ alias l.="ls -A | egrep '^\.'"
 # a games
 alias ttysol='ttysolitaire -p 1000'
 
+# shortcut for plex ownership
+alias plexown='sudo chown -R arcline:plex * && sudo chmod -R 775 *'
+
 # surfshark vpn aliases
 alias ssv="sudo surfshark-vpn"
 alias ssvs="sudo surfshark-vpn status"
