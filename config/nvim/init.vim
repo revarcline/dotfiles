@@ -390,9 +390,6 @@ let g:deoplete#enable_at_startup = 1
 " ragtag available for more files
 let g:ragtag_global_maps = 1
 
-" no autohide quotes
-let g:vim_json_syntax_conceal = 0
-
 " Indent stuff
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239

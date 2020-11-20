@@ -33,10 +33,16 @@ if [ -d "$HOME/.rbenv/bin" ];
     then PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
+# fix errors with fuck
+eval $(thefuck --alias)
+
+# quick paths with fasd
 eval "$(fasd --init auto)"
 
+# rbenv version control
 eval "$(rbenv init -)"
 
+# alias ranger to cd on quit
 rr() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
     ranger --choosedir="$temp_file" -- "${@:-$PWD}"
@@ -46,7 +52,6 @@ rr() {
     rm -f -- "$temp_file"
 }
 
-# Customize to your needs...
 # setup baby
 autoload -Uz promptinit
 promptinit
@@ -61,7 +66,6 @@ alias vi="nvim"
 # nnn opts
 export NNN_USE_EDITOR=1      # use the $EDITOR when opening text files
 export NNN_COLORS='2134'
-
 
 # nnn cd on quit
 n ()
