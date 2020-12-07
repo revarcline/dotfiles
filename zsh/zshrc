@@ -33,6 +33,11 @@ if [ -d "$HOME/.rbenv/bin" ];
     then PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
+# nvm
+if [ -d "/usr/share/nvm" ];
+    then source /usr/share/nvm/init-nvm.sh
+fi
+
 # fix errors with fuck
 eval $(thefuck --alias)
 
@@ -41,6 +46,7 @@ eval "$(fasd --init auto)"
 
 # rbenv version control
 eval "$(rbenv init -)"
+rbenv shell --unset
 
 # alias ranger to cd on quit
 rr() {
@@ -101,6 +107,9 @@ alias info='info --vi-keys'
 
 #easy playerctl
 alias pp='playerctl play-pause &'
+
+#ED market connector
+alias edmc='~/code/EDMarketConnector/EDMarketConnector.py &'
 
 # ls stuff
 alias ls='ls --color=auto'
