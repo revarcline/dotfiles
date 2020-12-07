@@ -84,10 +84,10 @@ Plug 'ryanoasis/vim-devicons'
 " tim pope's sensible, just a few easy settings
 Plug 'tpope/vim-sensible'
 
-" rails plugin
+" more sensible indentation
 Plug 'tpope/vim-sleuth'
 
-" more sensible indentation
+" rails plugin
 Plug 'tpope/vim-rails'
 
 " caps lock indicator
