@@ -1,8 +1,8 @@
 set nocompatible
 
 " a few binary requirements/recs from your system package manager or elsewhere:
-" ctags
 " fzf
+" ag
 " Hasklug NF or any other mono font from
 " https://github.com/ryanoasis/nerd-fonts
 "
@@ -32,12 +32,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 " start screen
 Plug 'mhinz/vim-startify'
-
-" auto-generate ctags
-Plug 'craigemery/vim-autotag'
-
-" Tagbar, a good ctag shower
-Plug 'majutsushi/tagbar'
 
 " extra language plugins
 Plug 'sheerun/vim-polyglot'
@@ -395,16 +389,6 @@ let g:ragtag_global_maps = 1
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
-" Tagbar keys
-nnoremap <Leader>tb :TagbarToggle<CR>
-nnoremap <Leader>tt :Tags<CR>
-
-" Tagbar settings
-let g:tagbar_autofocus = 1
-
-" autotags setings
-let g:autotagTagsFile="tags"
 
 " slime setup - change this depending on how you find youself using it!
 " currently I have it so whatever pane 2 of my tmux window is runs the repl
