@@ -42,13 +42,18 @@ Plug 'luochen1990/rainbow'
 " ale for linting - requires linters as system packages
 Plug 'dense-analysis/ale'
 
-" NERDCommenter and tree
+" NERDCommenter
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
+
+" ranger
+Plug 'kevinhwang91/rnvimr' 
 
 " Plug in goyo and limelight for a low distraction environment
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+
+" floating terminals
+Plug 'voldikss/vim-floaterm'
 
 " emmet
 Plug 'mattn/emmet-vim'
@@ -66,7 +71,7 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'dbeniamine/cheat.sh-vim'
 
 " slime - for REPL in tmux
-Plug 'jpalardy/vim-slime'
+" Plug 'jpalardy/vim-slime'
 
 " Airline - statusbar plugin
 Plug 'vim-airline/vim-airline'
@@ -129,7 +134,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 " FZF baybee
 Plug '/usr/bin/fzf'  " make sure you install this
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Improved python folding
@@ -302,14 +307,22 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 
-" Nerd tree
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-
 " remap emmet to c-z during insert mode, available for all files
 let g:user_emmet_leader_key='<C-z>'
 let g:user_emmet_install_global = 1
+
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+
+" Toggle Ranger
+nnoremap <silent> <C-n> :RnvimrToggle<CR>
+tnoremap <silent> <C-n> <C-\><C-n>:RnvimrToggle<CR>
+
+" Resize floating window by all preset layouts
+tnoremap <silent> <C-i> <C-\><C-n>:RnvimrResize<CR>
 
 " FZF mappings
 nnoremap <C-b> :Buffer<CR>
@@ -343,6 +356,20 @@ let g:rainbow_active = 1
 let g:rainbow_conf = {
     \   'ctermfgs': ['red', 'blue', 'magenta', 'yellow'],
     \}
+
+" FloatTerm
+nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+nnoremap   <silent>   <F8>    :FloatermPrev<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F10>    :FloatermNext<CR>
+tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+tnoremap   <silent>   <F11>   <C-\><C-n><CR>
+
+nnoremap   <C-c><C-c> :FloatermSend<CR>
+vnoremap   <C-c><C-c> :FloatermSend<CR>
 
 " Goyo hotkey (distraction-free typing)
 nmap <Leader>go :Goyo<CR>
@@ -392,8 +419,9 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " slime setup - change this depending on how you find youself using it!
 " currently I have it so whatever pane 2 of my tmux window is runs the repl
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
+" trying out floatterm instead for now
+" let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
 
 " gruvbox baby
 let g:gruvbox_italic=1
