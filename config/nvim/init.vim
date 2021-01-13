@@ -456,7 +456,7 @@ let g:ale_fix_on_save = 1
 command! ALEDisableFixers       let g:ale_fix_on_save=0
 command! ALEEnableFixers        let g:ale_fix_on_save=1
 command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
-command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
+command! ALEEnableFixersBuffer  let b:ale_fix_on_save=1
 
 " use bracket bindings to navgiate ale specific errors/warnings
 nmap <silent> [r <Plug>(ale_previous_wrap)
@@ -464,7 +464,6 @@ nmap <silent> ]r <Plug>(ale_next_wrap)
 
 " Airline settings
 let g:airline_powerline_fonts = 1
-
 " make tabline the way we want it
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buf_label_first = 1
