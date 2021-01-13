@@ -10,4 +10,4 @@ recommended font for kitty is
 [jetbrains mono nerdfont](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono)
 
 can easily commit changes with `commdots 'message'` and `updots` to sync with
-this repo
+this repo (aliased in `.zshrc`)
