@@ -1,9 +1,12 @@
 set nocompatible
 
-" a few binary requirements/recs from your system package manager or elsewhere:
+
+" a few external requirements/recs from your system package manager or elsewhere:
 " fzf
 " ag
-" Hasklug NF or any other mono font from
+" ranger
+" rubocop
+" Jet Brains Mono Nerd Font or any other mono font from
 " https://github.com/ryanoasis/nerd-fonts
 "
 " naturally check the help pages or the github pages for these plugins
@@ -146,7 +149,7 @@ Plug 'airblade/vim-gitgutter'
 " easier unicode and digraphs
 Plug 'chrisbra/unicode.vim'
 
-" tpope surround again
+" tpope surround (autoclose)
 Plug 'tpope/vim-surround'
 
 " tmux stuff
@@ -226,8 +229,8 @@ set confirm
 " Enable use of the mouse for all modes
 set mouse=a
  
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+" Use <F6> to toggle between 'paste' and 'nopaste'
+set pastetoggle=<F6>
  
 " disable annoying conceals
 let g:vim_json_syntax_conceal = 0
@@ -321,8 +324,9 @@ let g:rnvimr_enable_picker = 1
 nnoremap <silent> <C-n> :RnvimrToggle<CR>
 tnoremap <silent> <C-n> <C-\><C-n>:RnvimrToggle<CR>
 
-" Resize floating window by all preset layouts
-tnoremap <silent> <C-i> <C-\><C-n>:RnvimrResize<CR>
+" set rnvimr size
+
+let g:rnvimr_presets = [{'width': 1.000, 'height': 0.800}]
 
 " FZF mappings
 nnoremap <C-b> :Buffer<CR>
@@ -358,15 +362,15 @@ let g:rainbow_conf = {
     \}
 
 " FloatTerm
-nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
-nnoremap   <silent>   <F8>    :FloatermPrev<CR>
-tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <F10>    :FloatermNext<CR>
-tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F10>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+nnoremap   <silent>   <F9>    :FloatermPrev<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F11>    :FloatermNext<CR>
+tnoremap   <silent>   <F11>    <C-\><C-n>:FloatermNext<CR>
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-tnoremap   <silent>   <F11>   <C-\><C-n><CR>
+tnoremap   <silent>   <F8>   <C-\><C-n><CR>
 
 nnoremap   <C-c><C-c> :FloatermSend<CR>
 vnoremap   <C-c><C-c> :FloatermSend<CR>
@@ -447,6 +451,12 @@ let g:ale_fixers = {
       \    'javascript': ['eslint'],
       \}
 let g:ale_fix_on_save = 1
+
+" helpers for toggling fix_on_save
+command! ALEDisableFixers       let g:ale_fix_on_save=0
+command! ALEEnableFixers        let g:ale_fix_on_save=1
+command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
+command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
 
 " use bracket bindings to navgiate ale specific errors/warnings
 nmap <silent> [r <Plug>(ale_previous_wrap)

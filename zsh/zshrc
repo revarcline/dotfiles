@@ -105,6 +105,12 @@ n ()
 # ew emacs keys
 alias info='info --vi-keys'
 
+# quick logout
+alias gnome-logout='gnome-session-quit --logout --no-prompt'
+
+# quick fix keys
+alias fixkeys='setxkbmap -option caps:escape && setxkbmap -option compose:menu'
+
 #easy playerctl
 alias pp='playerctl play-pause &'
 
