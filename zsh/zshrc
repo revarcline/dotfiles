@@ -182,8 +182,9 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -100"
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
-# rails/bundle stuff
+# ruby/rails/bundle stuff
 alias beg="bundle exec guard"
+alias ber="bundle exec rake"
 
 # ps
 alias psa="ps aux"

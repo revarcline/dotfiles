@@ -124,9 +124,9 @@ Plug 'junegunn/vim-easy-align'
 
 " Deoplete and plugins 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-zsh'
+Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'Shougo/neco-syntax'
 Plug 'fszymanski/deoplete-emoji'
 Plug 'sebastianmarkow/deoplete-rust'
