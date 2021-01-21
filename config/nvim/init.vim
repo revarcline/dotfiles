@@ -335,6 +335,8 @@ nnoremap <Leader>; :Commands<CR>
 xnoremap <Leader>; :Commands<CR>
 nnoremap <C-p> <esc>:Files<CR>
 xnoremap <C-p> :Files<CR>
+nnoremap <Leader>p <esc>:GFiles<CR>
+xnoremap <Leader>p :GFiles<CR>
 nnoremap <Leader>rg :Rg<CR>
 xnoremap <Leader>rg :Rg<CR>
 nnoremap <Leader>ag :Ag<CR>
@@ -449,6 +451,7 @@ let g:ale_sign_info = ""
 let g:ale_fixers = {
       \    'ruby': ['rubocop'],
       \    'javascript': ['eslint'],
+      \    'css': ['stylelint', 'prettier']
       \}
 let g:ale_fix_on_save = 1
 

@@ -38,6 +38,14 @@ if [ -d "/usr/share/nvm" ];
     then source /usr/share/nvm/init-nvm.sh
 fi
 
+NPM_PACKAGES="${HOME}/.npm-packages"
+
+export PATH="$PATH:$NPM_PACKAGES/bin"
+
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
 # fix errors with fuck
 eval $(thefuck --alias)
 
@@ -183,8 +191,12 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -100"
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # ruby/rails/bundle stuff
+alias be="bundle exec"
 alias beg="bundle exec guard"
 alias ber="bundle exec rake"
+alias berr="bundle exec rails"
+alias beru="bundle exec rackup"
+alias besg="bundle exec shotgun"
 
 # ps
 alias psa="ps aux"
