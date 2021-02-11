@@ -38,6 +38,7 @@ if [ -d "/usr/share/nvm" ];
     then source /usr/share/nvm/init-nvm.sh
 fi
 
+
 NPM_PACKAGES="${HOME}/.npm-packages"
 
 export PATH="$PATH:$NPM_PACKAGES/bin"
@@ -136,6 +137,9 @@ whichvenv ()
 # shortcut to init standard python venv
 alias initvenv='source venv/bin/activate'
 
+# pulseaudio for streaming
+alias pa-stream='~/code/sh/pa_stream.sh'
+
 #fix obvious typos
 alias cd..='cd ..'
 alias pdw="pwd"
@@ -191,12 +195,20 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -100"
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # ruby/rails/bundle stuff
+# (works with rbenv-binstubs)
 alias be="bundle exec"
-alias beg="bundle exec guard"
-alias ber="bundle exec rake"
-alias berr="bundle exec rails"
-alias beru="bundle exec rackup"
-alias besg="bundle exec shotgun"
+
+binstall () {
+    bundle install
+    bundle binstub --all
+    rbenv rehash
+    touch .gitignore
+    if [ ! -z $(grep "^/bin$" .gitignore) ]
+        then return 0 
+        else echo -e "/bin" >> .gitignore
+    fi 
+}
+alias bupdate="bundle update && bundle binstub --all && rbenv rehash"
 
 # ps
 alias psa="ps aux"

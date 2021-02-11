@@ -126,7 +126,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-zsh'
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+"Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'Shougo/neco-syntax'
 Plug 'fszymanski/deoplete-emoji'
 Plug 'sebastianmarkow/deoplete-rust'
@@ -198,6 +198,8 @@ set smarttab	" Enable smart-tabs
 set ruler	" Show row and column ruler information
  
 set undolevels=1000	" Number of undo levels
+
+set cmdheight=2
 
 highlight LineNr ctermbg=236
 
@@ -451,7 +453,8 @@ let g:ale_sign_info = ""
 let g:ale_fixers = {
       \    'ruby': ['rubocop'],
       \    'javascript': ['eslint'],
-      \    'css': ['stylelint', 'prettier']
+      \    'css': ['stylelint', 'prettier'],
+      \    'html': ['prettier']
       \}
 let g:ale_fix_on_save = 1
 
