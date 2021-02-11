@@ -24,6 +24,12 @@
     ~/.config/nvim/init.vim:
         path: config/nvim/init.vim
         create: true
+    ~/.config/rofi/config.rasi:
+        path: config/rofi/config.rasi
+        create: true
+    ~/.config/rofi/themes/gruvbox-dark-purple.rasi:
+        path: config/rofi/themes/gruvbox-dark-purple.rasi
+        create: true
     ~/.nvimrc: config/nvim/init.vim
     ~/.p10k.zsh: p10k.zsh
     ~/.config/zathura/zathurac:
