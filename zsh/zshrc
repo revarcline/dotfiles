@@ -197,15 +197,16 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 # ruby/rails/bundle stuff
 # (works with rbenv-binstubs)
 alias be="bundle exec"
+alias binforce='bundle binstubs bundler --force'
 
 binstall () {
     bundle install
     bundle binstub --all
     rbenv rehash
     touch .gitignore
-    if [ ! -z $(grep "^/bin$" .gitignore) ]
+    if [ ! -z $(grep "^\.bin$" .gitignore) ]
         then return 0 
-        else echo -e "/bin" >> .gitignore
+        else echo -e ".bin" >> .gitignore
     fi 
 }
 alias bupdate="bundle update && bundle binstub --all && rbenv rehash"

@@ -126,7 +126,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-zsh'
-"Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'Shougo/neco-syntax'
 Plug 'fszymanski/deoplete-emoji'
 Plug 'sebastianmarkow/deoplete-rust'
@@ -366,10 +366,14 @@ let g:rainbow_conf = {
     \}
 
 " FloatTerm
-nnoremap   <silent>   <F10>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
-tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
-nnoremap   <silent>   <F9>    :FloatermPrev<CR>
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermPrev<CR>
+let g:floaterm_width = 0.98
+let g:floaterm_height = 0.4
+let g:floaterm_position = 'bottom'
+
+nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2<CR>
+nnoremap   <silent>   <F10>    :FloatermPrev<CR>
+tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermPrev<CR>
 nnoremap   <silent>   <F11>    :FloatermNext<CR>
 tnoremap   <silent>   <F11>    <C-\><C-n>:FloatermNext<CR>
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
