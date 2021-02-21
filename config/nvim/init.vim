@@ -366,12 +366,12 @@ let g:rainbow_conf = {
     \}
 
 " FloatTerm
-let g:floaterm_width = 0.98
+let g:floaterm_width = 1.0
 let g:floaterm_height = 0.4
 let g:floaterm_position = 'bottom'
 
-nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2<CR>
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2<CR>
+nnoremap   <silent>   <F9>    :FloatermNew --autoclose=2<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --autoclose=2<CR>
 nnoremap   <silent>   <F10>    :FloatermPrev<CR>
 tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermPrev<CR>
 nnoremap   <silent>   <F11>    :FloatermNext<CR>
