@@ -269,6 +269,20 @@ rortags () {
   cd $RORROOT
 }
 
+# big figlet clock
+bigclock() {
+    trap "tput cnorm; break; echo" 2 
+    tput civis
+    while true; do 
+        tput clear
+        printf "\n\n\n"
+        printf "\e[95m"
+        # candidates: colossal, Electronic, maxiwi, rebel, smblock, 3d, ANSI Regular, DOS Rebel
+        date +"%H : %M : %S" | figlet -f Electronic -w $(tput cols) -c
+        sleep 1 
+    done
+}
+
 # ex = EXtractor for all kinds of archives
 # usage: ex <file>
 ex ()
