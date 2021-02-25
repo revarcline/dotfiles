@@ -275,10 +275,10 @@ bigclock() {
     tput civis
     while true; do 
         tput clear
-        printf "\n\n\n"
+        printf "\n\n\n\n\n"
         printf "\e[95m"
         # candidates: colossal, Electronic, maxiwi, rebel, smblock, 3d, ANSI Regular, DOS Rebel
-        date +"%H : %M : %S" | figlet -f Electronic -w $(tput cols) -c
+        date +"%H : %M : %S" | figlet -f ANSI\ Regular -w $(tput cols) -c
         sleep 1 
     done
 }
