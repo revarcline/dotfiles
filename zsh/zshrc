@@ -85,7 +85,7 @@ alias info='info --vi-keys'
 alias gnome-logout='gnome-session-quit --logout --no-prompt'
 
 # quick fix keys
-alias fixkeys='setxkbmap -option caps:escape && setxkbmap -option compose:menu'
+alias fixkeys='setxkbmap -option'
 
 #easy playerctl
 alias pp='playerctl play-pause &'
@@ -167,6 +167,9 @@ alias todo=todo.sh
 
 # empty sudo (handy for pacfzf)
 alias sudome='sudo true'
+
+# quickload keys
+alias wallyfy='wally-cli ~/Downloads/moonlander*; rm ~/Downloads/moonlander*'
 
 #readable output
 alias df='df -h'
