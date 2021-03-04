@@ -128,12 +128,11 @@ Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-zsh'
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'Shougo/neco-syntax'
-Plug 'fszymanski/deoplete-emoji'
 Plug 'sebastianmarkow/deoplete-rust'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" lsp suport
+Plug 'prabirshrestha/vim-lsp'
+Plug 'lighttiger2505/deoplete-vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 " FZF baybee
 Plug '/usr/bin/fzf'  " make sure you install this
@@ -275,10 +274,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 noremap <expr> <F7> LaTeXtoUnicode#Toggle()
 noremap! <expr> <F7> LaTeXtoUnicode#Toggle()
 
-" Deoplete mappings
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
 " toggle deoplete (helps on cpu if not using completion, note this is silent)
 noremap <expr> <F5> deoplete#toggle()
 noremap! <expr> <F5> deoplete#toggle()
@@ -299,27 +294,23 @@ nmap K 5k
 vmap K 5k
 
 " Save mappings
-inoremap <C-s> <esc>:w<cr>                 " save files
+inoremap <C-s> <esc>:w<cr>
 nnoremap <C-s> :w<cr>
 
 " close buffers
 inoremap <C-e> <esc>:bd<cr>
 nnoremap <C-e> :bd<cr>
 
+" highlight colors
 nmap <Leader>hi :ColorToggle<CR>
 xmap <Leader>hi :ColorToggle<CR>
 
-" deoplete completion for emoji
-call deoplete#custom#source('emoji', 'filetypes', ['rst', 'txt', 'text', 'gitcommit', 'markdown', 'html'])
-call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
-" speed up popup
-call deoplete#custom#option('auto_complete_delay', 0)
-
-" lsp for ruby
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
+" Deoplete mappings
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " remap emmet to c-z during insert mode, available for all files
 let g:user_emmet_leader_key='<C-z>'
@@ -426,10 +417,6 @@ let g:limelight_eop = '\n'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-
 " ragtag available for more files
 let g:ragtag_global_maps = 1
 
@@ -450,6 +437,9 @@ let g:gruvbox_bold=1
 let g:gruvbox_underline=1
 let g:gruvbox_undercurl=1
 let g:gruvbox_italicize_comments=1
+
+" disable lsp syntax highlighting
+let g:lsp_diagnostics_enabled = 0
 
 " ALE settings
 " use ale as a deoplete source
