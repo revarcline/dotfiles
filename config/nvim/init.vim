@@ -284,10 +284,19 @@ noremap <expr> <F5> deoplete#toggle()
 noremap! <expr> <F5> deoplete#toggle()
 
 " easy map for line nav
+nnoremap <Leader>j J
+vnoremap <Leader>j J
+nnoremap <Leader>k :Ag <C-R><C-W><CR>
+
 nmap H ^
-xmap H ^
+vmap H ^
 nmap L $
-xmap L $
+vmap L $
+
+nmap J 5j
+vmap J 5j
+nmap K 5k
+vmap K 5k
 
 " Save mappings
 inoremap <C-s> <esc>:w<cr>                 " save files
@@ -331,8 +340,8 @@ tnoremap <silent> <C-n> <C-\><C-n>:RnvimrToggle<CR>
 let g:rnvimr_presets = [{'width': 1.000, 'height': 0.800}]
 
 " FZF mappings
-nnoremap <C-b> :Buffer<CR>
-xnoremap <C-b> :Buffer<CR>
+nnoremap <Leader>b :Buffer<CR>
+xnoremap <Leader>b :Buffer<CR>
 nnoremap <Leader>; :Commands<CR>
 xnoremap <Leader>; :Commands<CR>
 nnoremap <C-p> <esc>:Files<CR>
@@ -370,15 +379,15 @@ let g:floaterm_width = 1.0
 let g:floaterm_height = 0.4
 let g:floaterm_position = 'bottom'
 
-nnoremap   <silent>   <F9>    :FloatermNew --autoclose=2<CR>
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --autoclose=2<CR>
-nnoremap   <silent>   <F10>    :FloatermPrev<CR>
-tnoremap   <silent>   <F10>    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <F11>    :FloatermNext<CR>
-tnoremap   <silent>   <F11>    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-tnoremap   <silent>   <F8>   <C-\><C-n><CR>
+nnoremap   <silent>   <F4>    :FloatermNew --autoclose=2<CR>
+tnoremap   <silent>   <F4>    <C-\><C-n>:FloatermNew --autoclose=2<CR>
+nnoremap   <silent>   <F2>    :FloatermPrev<CR>
+tnoremap   <silent>   <F2>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F3>    :FloatermNext<CR>
+tnoremap   <silent>   <F3>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F1>   :FloatermToggle<CR>
+tnoremap   <silent>   <F1>   <C-\><C-n>:FloatermToggle<CR>
+tnoremap   <silent>   <F5>   <C-\><C-n><CR>
 
 nnoremap   <C-c><C-c> :FloatermSend<CR>
 vnoremap   <C-c><C-c> :FloatermSend<CR>
