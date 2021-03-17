@@ -45,6 +45,9 @@ Plug 'luochen1990/rainbow'
 " ale for linting - requires linters as system packages
 Plug 'dense-analysis/ale'
 
+" elixir
+Plug 'elixir-editors/vim-elixir' 
+
 " NERDCommenter
 Plug 'preservim/nerdcommenter'
 
@@ -133,6 +136,7 @@ Plug 'sebastianmarkow/deoplete-rust'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'lighttiger2505/deoplete-vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
 
 " FZF baybee
 Plug '/usr/bin/fzf'  " make sure you install this
@@ -245,8 +249,8 @@ let g:vim_markdown_conceal_code_blocks = 0
  
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 "------------------------------------------------------------
@@ -281,6 +285,7 @@ noremap! <expr> <F5> deoplete#toggle()
 " easy map for line nav
 nnoremap <Leader>j J
 vnoremap <Leader>j J
+" search ag for word under cursor
 nnoremap <Leader>k :Ag <C-R><C-W><CR>
 
 nmap H ^
@@ -365,18 +370,26 @@ let g:rainbow_conf = {
     \   'ctermfgs': ['red', 'blue', 'magenta', 'yellow'],
     \}
 
+" startify
+let g:startify_padding_left = 2
+let g:startify_custom_header = ''
+
 " FloatTerm
 let g:floaterm_width = 1.0
 let g:floaterm_height = 0.4
 let g:floaterm_position = 'bottom'
 
 nnoremap   <silent>   <F4>    :FloatermNew --autoclose=2<CR>
+inoremap   <silent>   <F4>    <ESC>:FloatermNew --autoclose=2<CR>
 tnoremap   <silent>   <F4>    <C-\><C-n>:FloatermNew --autoclose=2<CR>
 nnoremap   <silent>   <F2>    :FloatermPrev<CR>
+inoremap   <silent>   <F2>    <ESC>:FloatermPrev<CR>
 tnoremap   <silent>   <F2>    <C-\><C-n>:FloatermPrev<CR>
 nnoremap   <silent>   <F3>    :FloatermNext<CR>
+inoremap   <silent>   <F3>    <ESC>:FloatermNext<CR>
 tnoremap   <silent>   <F3>    <C-\><C-n>:FloatermNext<CR>
 nnoremap   <silent>   <F1>   :FloatermToggle<CR>
+inoremap   <silent>   <F1>   <ESC>:FloatermToggle<CR>
 tnoremap   <silent>   <F1>   <C-\><C-n>:FloatermToggle<CR>
 tnoremap   <silent>   <F5>   <C-\><C-n><CR>
 
@@ -452,14 +465,25 @@ let g:ale_sign_style_warning = ""
 let g:ale_sign_style_error = ""
 let g:ale_sign_info = ""
 
-" fix indent etc on save (currently ruby only)
+" elixir ls stuff
+let g:ale_elixir_elixir_ls_release = '~/.config/nvim/plugged/vim-elixirls/elixir-ls/release'
+
+" https://github.com/JakeBecker/elixir-ls/issues/54
+let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:false } }
+
+" fix indent etc on save
 let g:ale_fixers = {
       \    'ruby': ['rubocop'],
       \    'javascript': ['eslint'],
+      \    'elixir': ['mix_format'],
       \    'css': ['stylelint', 'prettier'],
       \    'html': ['prettier']
       \}
 let g:ale_fix_on_save = 1
+
+let g:ale_linters = {}
+let g:ale_linters.elixir = [ 'credo', 'elixir-ls' ]
+let g:ale_linters.javascript = [ 'eslint' ]
 
 " helpers for toggling fix_on_save
 command! ALEDisableFixers       let g:ale_fix_on_save=0
