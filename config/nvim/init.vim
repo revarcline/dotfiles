@@ -246,9 +246,6 @@ let g:vim_markdown_conceal_code_blocks = 0
 " Indentation options {{{1
 "
 " Indentation settings according to personal preference.
- 
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=2
 set expandtab

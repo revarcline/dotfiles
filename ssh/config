@@ -4,5 +4,5 @@ host adam
 
 host boppus
     User arcline
-    Hostname 192.168.1.111
+    Hostname 192.168.0.111
     Port 42069
