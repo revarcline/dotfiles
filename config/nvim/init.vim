@@ -39,9 +39,6 @@ Plug 'mhinz/vim-startify'
 " extra language plugins
 Plug 'sheerun/vim-polyglot'
 
-" rainbow parentheses
-Plug 'luochen1990/rainbow'
-
 " ale for linting - requires linters as system packages
 Plug 'dense-analysis/ale'
 
@@ -360,12 +357,6 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 " edit this very file, source it
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" rainbow parantheses, set so it isn't too similar
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-    \   'ctermfgs': ['red', 'blue', 'magenta', 'yellow'],
-    \}
 
 " startify
 let g:startify_padding_left = 2
