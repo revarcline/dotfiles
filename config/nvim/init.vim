@@ -4,7 +4,6 @@ set nocompatible
 " a few external requirements/recs from your system package manager or elsewhere:
 " fzf
 " ag
-" ranger
 " rubocop
 " Jet Brains Mono Nerd Font or any other mono font from
 " https://github.com/ryanoasis/nerd-fonts
@@ -45,11 +44,9 @@ Plug 'dense-analysis/ale'
 " elixir
 Plug 'elixir-editors/vim-elixir' 
 
-" NERDCommenter
+" NERDCommenter and NERDTree
 Plug 'preservim/nerdcommenter'
-
-" ranger
-Plug 'kevinhwang91/rnvimr' 
+Plug 'preservim/nerdtree'
 
 " Plug in goyo and limelight for a low distraction environment
 Plug 'junegunn/goyo.vim'
@@ -72,9 +69,6 @@ Plug 'JuliaEditorSupport/julia-vim'
 
 " cht.sh for little tips
 Plug 'dbeniamine/cheat.sh-vim'
-
-" slime - for REPL in tmux
-" Plug 'jpalardy/vim-slime'
 
 " Airline - statusbar plugin
 Plug 'vim-airline/vim-airline'
@@ -315,20 +309,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 let g:user_emmet_leader_key='<C-z>'
 let g:user_emmet_install_global = 1
 
-" Make Ranger replace Netrw and be the file explorer
-let g:rnvimr_ex_enable = 1
-
-" Make Ranger to be hidden after picking a file
-let g:rnvimr_enable_picker = 1
-
-" Toggle Ranger
-nnoremap <silent> <C-n> :RnvimrToggle<CR>
-tnoremap <silent> <C-n> <C-\><C-n>:RnvimrToggle<CR>
-
-" set rnvimr size
-
-let g:rnvimr_presets = [{'width': 1.000, 'height': 0.800}]
-
 " FZF mappings
 nnoremap <Leader>b :Buffer<CR>
 xnoremap <Leader>b :Buffer<CR>
@@ -396,6 +376,11 @@ autocmd! User GoyoLeave Limelight!
 
 " More goyo and limelight settings
 let g:limelight_conceal_ctermfg = 240
+
+" NERDTree toggle and arrows
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)

@@ -172,6 +172,11 @@ cw ()
     curl wttr.in/$city\?0qF
 }
 
+# run small python expression
+pcalc () {
+  echo "print($1)" | python
+}
+
 # todo.txt
 alias todo=todo.sh
 
