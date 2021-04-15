@@ -406,16 +406,13 @@ let g:limelight_priority = -1
 " ragtag available for more files
 let g:ragtag_global_maps = 1
 
+
+let g:surround_106 = "{\/\* \r \*\/}"
+
 " Indent stuff
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
-" slime setup - change this depending on how you find youself using it!
-" currently I have it so whatever pane 2 of my tmux window is runs the repl
-" trying out floatterm instead for now
-" let g:slime_target = "tmux"
-" let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
 
 " gruvbox baby
 let g:gruvbox_italic=1
