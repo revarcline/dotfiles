@@ -4,6 +4,7 @@ set nocompatible
 " a few external requirements/recs from your system package manager or elsewhere:
 " fzf
 " ag
+" ranger
 " rubocop
 " Jet Brains Mono Nerd Font or any other mono font from
 " https://github.com/ryanoasis/nerd-fonts
@@ -41,12 +42,17 @@ Plug 'sheerun/vim-polyglot'
 " ale for linting - requires linters as system packages
 Plug 'dense-analysis/ale'
 
+" mult-cursor editing
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 " elixir
 Plug 'elixir-editors/vim-elixir' 
 
-" NERDCommenter and NERDTree
+" NERDCommenter for commments
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
+
+" ranger
+Plug 'kevinhwang91/rnvimr' 
 
 " Plug in goyo and limelight for a low distraction environment
 Plug 'junegunn/goyo.vim'
@@ -120,14 +126,13 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-zsh'
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+"Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'Shougo/neco-syntax'
 Plug 'sebastianmarkow/deoplete-rust'
 " lsp suport
 Plug 'prabirshrestha/vim-lsp'
 Plug 'lighttiger2505/deoplete-vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
 
 " FZF baybee
 Plug '/usr/bin/fzf'  " make sure you install this
@@ -294,6 +299,9 @@ nnoremap <C-s> :w<cr>
 inoremap <C-e> <esc>:bd<cr>
 nnoremap <C-e> :bd<cr>
 
+" multiline visual with mouse
+let g:VM_mouse_mappings = 1
+
 " highlight colors
 nmap <Leader>hi :ColorToggle<CR>
 xmap <Leader>hi :ColorToggle<CR>
@@ -377,11 +385,6 @@ autocmd! User GoyoLeave Limelight!
 " More goyo and limelight settings
 let g:limelight_conceal_ctermfg = 240
 
-" NERDTree toggle and arrows
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -403,10 +406,24 @@ let g:limelight_eop = '\n'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
+
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+
+" Toggle Ranger
+nnoremap <silent> <C-o> :RnvimrToggle<CR>
+tnoremap <silent> <C-o> <C-\><C-n>:RnvimrToggle<CR>
+
+" set rnvimr size
+let g:rnvimr_presets = [{'width': 0.900, 'height': 0.800}]
+
 " ragtag available for more files
 let g:ragtag_global_maps = 1
 
-
+" special jsx comment with surround (using j)
 let g:surround_106 = "{\/\* \r \*\/}"
 
 " Indent stuff
@@ -435,11 +452,7 @@ let g:ale_sign_style_warning = ""
 let g:ale_sign_style_error = ""
 let g:ale_sign_info = ""
 
-" elixir ls stuff
-let g:ale_elixir_elixir_ls_release = '~/.config/nvim/plugged/vim-elixirls/elixir-ls/release'
-
-" https://github.com/JakeBecker/elixir-ls/issues/54
-let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:false } }
+let g:ale_elixir_elixir_ls_release = '/usr/lib/elixir-ls'
 
 " fix indent etc on save
 let g:ale_fixers = {
@@ -454,6 +467,8 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {}
 let g:ale_linters.elixir = [ 'credo', 'elixir-ls' ]
 let g:ale_linters.javascript = [ 'eslint' ]
+
+autocmd FileType elixir,eelixir nnoremap <Leader>f :ALEFix<CR>
 
 " helpers for toggling fix_on_save
 command! ALEDisableFixers       let g:ale_fix_on_save=0

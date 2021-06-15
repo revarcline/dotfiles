@@ -17,9 +17,10 @@
 # Execute code only if STDERR is bound to a TTY.
 if [[ -o INTERACTIVE && -t 2 ]]; then
 
-  # Print a random, hopefully interesting, adage.
-  if (( $+commands[fortune] )); then
-    fortune -s
+  # show available updates
+  if (( $+commands[yay] )); then
+    echo 'available upgrades: '
+    yay -Qu
     print
   fi
 

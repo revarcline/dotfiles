@@ -38,7 +38,6 @@ if [ -d "/usr/share/nvm" ];
     then source /usr/share/nvm/init-nvm.sh
 fi
 
-
 NPM_PACKAGES="${HOME}/.npm-packages"
 
 export PATH="$PATH:$NPM_PACKAGES/bin"
@@ -56,6 +55,22 @@ eval "$(fasd --init auto)"
 # rbenv version control
 eval "$(rbenv init -)"
 rbenv shell --unset
+
+# alias ranger to cd on quit
+rr() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
+}
+
+# fzf opts
+export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
 
 # setup baby
 autoload -Uz promptinit
@@ -89,6 +104,9 @@ alias la='ls -a'
 alias ll='ls -lah'
 alias l='ls'
 alias l.="ls -A | egrep '^\.'"
+
+# suspend
+alias zzz="sudo systemctl suspend"
 
 # a games
 alias ttysol='ttysolitaire -p 1000'
