@@ -454,6 +454,9 @@ let g:ale_sign_info = ""
 
 let g:ale_elixir_elixir_ls_release = '/usr/lib/elixir-ls'
 
+" https://github.com/JakeBecker/elixir-ls/issues/54
+let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:false } }
+
 " fix indent etc on save
 let g:ale_fixers = {
       \    'ruby': ['rubocop'],
